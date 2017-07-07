@@ -5,26 +5,51 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { UserProvider } from '../providers/user/user';
+import { TodoProvider } from '../providers/todo/todo';
+import { ItemProvider } from '../providers/item/item';
+import { JwtProvider } from '../providers/jwt/jwt';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__tododb',
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationProvider,
+    UserProvider,
+    TodoProvider,
+    ItemProvider,
+    JwtProvider
   ]
 })
 export class AppModule {}
