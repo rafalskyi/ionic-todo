@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 
@@ -20,13 +20,12 @@ import {ItemProvider} from '../../providers/item/item';
   templateUrl: 'card.html',
 })
 export class CardPage {
-  @ViewChild('itemInput') itemInput: ElementRef;
+  @ViewChild('itemInput') itemInput;
 
   todo: Todo;
   currentEditItemId: number;
 
   constructor(public navCtrl: NavController,
-              private renderer: Renderer2,
               private todoService: TodoProvider,
               private itemService: ItemProvider,
               private alertCtrl: AlertController,
@@ -51,7 +50,7 @@ export class CardPage {
     this.todoService.update(todo).subscribe(() => this.loadAllItems());
   }
 
-  editItem = function(item:Item) {
+  editItem(item:Item) {
     this.currentEditItemId = item.id;
     //TODO: need better solution
     setTimeout(() => {
@@ -59,7 +58,7 @@ export class CardPage {
     }, 150);
   };
 
-  updateItem = function(item:Item) {
+  updateItem(item:Item) {
     this.currentEditItemId = null;
     if (!item.name) return;
     if (item.id) {
@@ -69,18 +68,18 @@ export class CardPage {
     }
   };
 
-  toggleItemComplete = function(item:Item) {
+  toggleItemComplete(item:Item) {
     item.done = !item.done;
     this.itemService.update(item).subscribe(() => this.loadAllItems());
   };
 
-  addItem = function() {
+  addItem() {
     let newItem = new Item();
     newItem.todo_id = this.todo.id;
     this.todo.items.push(newItem);
   };
 
-  removeItem = function(item:Item) {
+  removeItem(item:Item) {
     if (!item.id) {
       this.todo.items.pop();
       return;

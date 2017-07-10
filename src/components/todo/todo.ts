@@ -22,7 +22,7 @@ export class TodoComponent {
               public navCtrl: NavController,
               public viewCtrl: ViewController,
               private todoService: TodoProvider) {
-    console.log('test pass data UserId', params.get('testData'));
+    console.log('test pass data UserId', this.params.get('testData'));
     this.todo = {title: '', items:[]};
   }
 
