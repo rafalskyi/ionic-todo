@@ -11,19 +11,24 @@ import { HttpModule } from '@angular/http';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { CardPage } from '../pages/card/card';
 
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { UserProvider } from '../providers/user/user';
 import { TodoProvider } from '../providers/todo/todo';
 import { ItemProvider } from '../providers/item/item';
 import { JwtProvider } from '../providers/jwt/jwt';
+import { TodoComponent } from '../components/todo/todo';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CardPage,
+    TodoComponent
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import { JwtProvider } from '../providers/jwt/jwt';
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CardPage,
+    TodoComponent
   ],
   providers: [
     StatusBar,

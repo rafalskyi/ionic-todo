@@ -1,7 +1,7 @@
 ﻿import { Item } from '../_models/item';
 
 export class Todo {
-  id: number;
+  id?: number;
   title: string = '';
   items: Item[];
 

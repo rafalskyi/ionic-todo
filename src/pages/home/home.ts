@@ -3,7 +3,8 @@ import {
   NavController,
   ModalController,
   AlertController,
-  LoadingController
+  LoadingController,
+  NavParams
 } from 'ionic-angular';
 
 import {AuthenticationProvider} from '../../providers/authentication/authentication';
@@ -13,6 +14,8 @@ import {User} from '../../app/_models/user';
 import {Todo} from '../../app/_models/todo';
 
 import {LoginPage} from '../login/login';
+import {CardPage} from '../card/card';
+import { TodoComponent } from '../../components/todo/todo';
 
 @Component({
   selector: 'page-home',
@@ -29,8 +32,19 @@ export class HomePage {
               public todoService: TodoProvider,
               public loadingCtrl: LoadingController,
               public modalCtrl: ModalController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public navParams: NavParams) {
     this.currentUser = new User();
+  }
+
+  private loadAll() {
+    this.todoService.getAll()
+      .subscribe((data) => {
+        this.todos = data;
+      }, (err) => {
+        console.log("not allowed");
+        //this.logout();
+      });
   }
 
   ionViewCanEnter() {
@@ -39,20 +53,28 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.currentUser = this.authService.currentUser;
-
-    this.todoService.getAll()
-      .subscribe((data) => {
-        this.todos = data;
-      }, (err) => {
-        console.log("not allowed");
-        //this.logout();
-      });
-
+  }
+  ionViewWillEnter() {
+    this.loadAll();
   }
 
   logout() {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  editCard(todo) {
+    this.navCtrl.push(CardPage, todo);
+  }
+
+  addTodo() {
+    let profileModal = this.modalCtrl.create(TodoComponent, { testData: 8675309 });
+    profileModal.present();
+    profileModal.onDidDismiss(todo => {
+      if (todo) {
+        this.todos.push(todo);
+      }
+    });
   }
 
 }

@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>New TODO card</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <!-- Generated template for the TodoComponent component -->
+  <div>
+    <ion-input type="text" [(ngModel)]="todo.title"></ion-input>
+    <button ion-button (click)="addTodo()" outline block>
+      Add Card
+    </button>
+    <button ion-button (click)="cancel()" outline block>
+      cancel
+    </button>
+  </div>
+
+</ion-content>
