@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { config } from '../../config';
 import { Storage } from '@ionic/storage';
 import { User } from '../../app/_models/user';
 /*
@@ -29,7 +28,7 @@ export class AuthenticationProvider {
   }
 
   login(email:string, password:string){
-    return this.http.post(config.domain + '/api/auth/login', {email: email, password: password})
+    return this.http.post('/api/auth/login', {email: email, password: password})
       .map((response:Response) => {
         // login successful if there's a jwt token in the response
         let user = response.json();

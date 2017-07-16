@@ -1,5 +1,3 @@
-let config = {
-  domain: 'https://todo.localhost'
+export const config = {
+  domain: 'https://tws.aksmua.com'
 };
-
-export {config};

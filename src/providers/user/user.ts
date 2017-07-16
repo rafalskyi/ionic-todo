@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { config } from '../../config';
 import { User } from '../../app/_models/user';
 
 /*
@@ -19,7 +18,7 @@ export class UserProvider {
   }
 
   create(user:User) {
-    return this.http.post(config.domain + '/api/signup', user).map((response:Response) => response.json());
+    return this.http.post('/api/signup', user).map((response:Response) => response.json());
   }
 
 }
