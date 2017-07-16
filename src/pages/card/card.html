@@ -29,7 +29,7 @@
             <span>{{item.name}}</span>
           </ion-col>
           <ion-col col-10  *ngIf="item.id == currentEditItemId">
-            <ion-input #itemInput type="text" [(ngModel)]="item.name" (keyup.enter)="updateItem(item)" (focusout)="updateItem(item)"></ion-input>
+            <ion-input #itemInput autofocus type="text" [(ngModel)]="item.name" (keyup.enter)="doBlur($event)" (focusout)="updateItem(item)"></ion-input>
           </ion-col>
           <ion-col col-1>
             <button ion-button color="danger" outline (click)="removeItem(item)">

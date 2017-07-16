@@ -10,6 +10,8 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 
 import { httpFactory } from './http.factory';
 
+import { NextFocusDirective } from '../directives/nextfocus.directive';
+
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -29,8 +31,8 @@ import { TodoComponent } from '../components/todo/todo';
     LoginPage,
     RegisterPage,
     CardPage,
-    TodoComponent
-
+    TodoComponent,
+    NextFocusDirective
   ],
   imports: [
     BrowserModule,

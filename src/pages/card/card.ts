@@ -58,6 +58,12 @@ export class CardPage {
     }, 150);
   };
 
+  doBlur($event){
+    if($event.keyCode == 13) { // Detect Enter
+      $event.target.blur();
+    }
+  }
+
   updateItem(item:Item) {
     this.currentEditItemId = null;
     if (!item.name) return;
@@ -77,6 +83,7 @@ export class CardPage {
     let newItem = new Item();
     newItem.todo_id = this.todo.id;
     this.todo.items.push(newItem);
+
   };
 
   removeItem(item:Item) {
