@@ -1,7 +1,7 @@
 /**
  * Created by raf on 7/16/17.
  */
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { TextInput } from 'ionic-angular';
 
 @Directive({
