@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+
 import { httpFactory } from './http.factory';
 
 import { NextFocusDirective } from '../directives/nextfocus.directive';
@@ -65,7 +67,8 @@ import { TodoComponent } from '../components/todo/todo';
     UserProvider,
     TodoProvider,
     ItemProvider,
-    JwtProvider
+    JwtProvider,
+    GooglePlus
   ]
 })
 export class AppModule {}

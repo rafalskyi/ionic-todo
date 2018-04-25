@@ -6,6 +6,8 @@ import {
   LoadingController
 } from 'ionic-angular';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+
 import {AuthenticationProvider} from '../../providers/authentication/authentication';
 import {HomePage} from '../home/home';
 import {RegisterPage} from '../register/register';
@@ -24,11 +26,13 @@ export class LoginPage {
   email: string;
   password: string;
   loading: any;
+  res: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
-              public authService: AuthenticationProvider) {
+              public authService: AuthenticationProvider,
+              private googlePlus: GooglePlus) {
   }
 
   showLoader() {
@@ -72,6 +76,27 @@ export class LoginPage {
         this.loading.dismiss();
         console.log(err);
       });
+
+  }
+
+  socialLogin() {
+    this.googlePlus.login({
+      'webClientId': '272340719872-hboshp5mjl9d0mbf4th2ondilbm0jeor.apps.googleusercontent.com',
+      'offline': true
+    }).then((res) => {
+      console.log(res);
+      this.res = res
+    }).catch(err => {
+        console.error(err);
+        this.res = err;
+    })
+  }
+
+  logout(){
+
+    this.googlePlus.logout().then(() => {
+      console.log("logged out");
+    });
 
   }
 
